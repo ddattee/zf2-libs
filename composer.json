@@ -1,0 +1,48 @@
+{
+  "name": "root/libs",
+  "description": "ZF2 ddattee Libs",
+  "type": "library",
+  "keywords": [
+    "rest",
+    "zf2"
+  ],
+  "homepage": "http://www.ddattee.fr/",
+  "license": "Apache 2.0",
+  "require": {
+    "php": ">=5.5",
+    "zendframework/zend-form": "2.*",
+    "zendframework/zend-filter": "2.*",
+    "zendframework/zend-http": "2.*",
+    "zendframework/zend-uri": "2.*",
+    "zendframework/zend-validator": "2.*",
+    "neilime/zf2-twb-bundle": "2.*@stable"
+  },
+  "authors": [
+    {
+      "name": "David Dattee",
+      "email": "david.dattee@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "General\\": "library/General/",
+      "Rest\\": "library/Rest/",
+      "Vendors\\": "library/Vendors/",
+      "Libs\\": "src/"
+    },
+    "classmap": [
+      "src/Libs/Module.php"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.zendframework.com/"
+    }
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  }
+}
