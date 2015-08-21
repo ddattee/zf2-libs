@@ -1,5 +1,5 @@
 {
-  "name": "root/libs",
+  "name": "composer/libs",
   "description": "ZF2 ddattee Libs",
   "type": "library",
   "keywords": [
