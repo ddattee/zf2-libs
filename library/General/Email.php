@@ -113,12 +113,12 @@ class Email extends Message implements ServiceLocatorAwareInterface, AbstractFac
 	public function setBody($html)
 	{
 		$content = str_replace('%content%', $html, $this->getLayoutContent());
-		$html = new Part($content);
-		$html->type = "text/html";
-		$txt = new Part(strip_tags($html));
-		$txt->type = "text/plain";
+		$htmlpart = new Part($content);
+		$htmlpart->type = "text/html";
+		$txtpart = new Part(strip_tags($html));
+		$txtpart->type = "text/plain";
 		$body = new \Zend\Mime\Message();
-		$body->setParts(array($html, $txt));
+		$body->setParts(array($htmlpart, $txtpart));
 		return parent::setBody($body);
 	}
 
