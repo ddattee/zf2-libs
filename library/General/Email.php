@@ -111,7 +111,9 @@ class Email extends Message implements ServiceLocatorAwareInterface, AbstractFac
 	 */
 	public function setBody($content)
 	{
-		return parent::setBody(str_replace('%content%', $content, $this->getLayoutContent()));
+		$body = new MimePart(str_replace('%content%', $content, $this->getLayoutContent()));
+		$body->type = "text/html";
+		return parent::setBody($body);
 	}
 
 	/**
