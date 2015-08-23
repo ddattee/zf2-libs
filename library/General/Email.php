@@ -12,6 +12,7 @@ namespace General;
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\SmtpOptions;
+use Zend\Mime\Part;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
@@ -111,7 +112,7 @@ class Email extends Message implements ServiceLocatorAwareInterface, AbstractFac
 	 */
 	public function setBody($content)
 	{
-		$body = new MimePart(str_replace('%content%', $content, $this->getLayoutContent()));
+		$body = new Part(str_replace('%content%', $content, $this->getLayoutContent()));
 		$body->type = "text/html";
 		return parent::setBody($body);
 	}
