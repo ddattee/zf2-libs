@@ -6,7 +6,9 @@ return array(
 			'Rest\Factory\ClientFactoryAbstract',
 			'General\Factory\FormFactoryAbstract',
 			'General\Service\ServiceAbstract',
-			'General\Mapper\MapperAbstract'
+			'General\Mapper\MapperAbstract',
+			'General\Hydrator\HydratorAbstract',
+			'General\Email'
 		),
 	),
 	'view_helpers' => array(
@@ -42,6 +44,24 @@ return array(
 			'message_open_format'      => '<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><ul class="list-unstyled"><li>',
 			'message_close_string'     => '</li></ul></div>',
 			'message_separator_string' => '</li><li>'
+		)
+	),
+	'email' => array(
+		'templates' => array(
+			'path' => '',
+			'layout' => '',
+		),
+		'smtp' => array(
+			'name' => '',
+			'host' => '',
+			'port' => '',
+			'connection_class' => '',
+			'connection_config' => array(
+				'username' => '',
+				'password' => '',
+//				'ssl' => 'tls',
+			),
+
 		)
 	),
 	'rest' => array(
