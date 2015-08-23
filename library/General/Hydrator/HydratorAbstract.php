@@ -9,11 +9,17 @@
 namespace General\Hydrator;
 
 
+use Zend\ServiceManager\AbstractFactoryInterface;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorAwareTrait;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\Hydrator\HydratorInterface;
 
-class DefaultHydrator implements HydratorInterface
+class HydratorAbstract implements HydratorInterface, ServiceLocatorAwareInterface, AbstractFactoryInterface
 {
+	use ServiceLocatorAwareTrait;
+
 	/**
 	 * Inject $data's data in $object
 	 * @param array $data
@@ -26,8 +32,6 @@ class DefaultHydrator implements HydratorInterface
 			if (method_exists($object, 'set' . ucfirst($k))) {
 				$setter = 'set' . ucfirst($k);
 				$object->$setter($v);
-			} else {
-				$object->$k = $v;
 			}
 		}
 		return $object;
@@ -85,5 +89,33 @@ class DefaultHydrator implements HydratorInterface
 				$arr[$prop->getName()] = $propval;
 		}
 		return $arr;
+	}
+
+	/**
+	 * Determine if we can create a service with name
+	 *
+	 * @param ServiceLocatorInterface $serviceLocator
+	 * @param $name
+	 * @param $requestedName
+	 * @return bool
+	 */
+	public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+	{
+		return (is_subclass_of($requestedName, '\General\Hydrator\HydratorAbstract'));
+	}
+
+	/**
+	 * Create service with name
+	 *
+	 * @param ServiceLocatorInterface $serviceLocator
+	 * @param $name
+	 * @param $requestedName
+	 * @return mixed
+	 */
+	public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+	{
+		$service = new $requestedName();
+		$service->setServiceLocator($serviceLocator);
+		return $service;
 	}
 }
