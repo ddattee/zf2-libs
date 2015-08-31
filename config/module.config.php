@@ -13,6 +13,7 @@ return array(
 	),
 	'view_helpers' => array(
 		'invokables' => array(
+			'form' => 'General\View\Helper\Form',
 			'FootScript' => 'General\View\Helper\FootScript',
 			'_' => 'General\View\Helper\_'
 		)
