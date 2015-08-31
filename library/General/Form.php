@@ -8,7 +8,7 @@
 
 namespace General;
 
-
+use TwbBundle\Form\View\Helper\TwbBundleForm;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -63,7 +63,7 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
 
 				//Default layout horizontal configuration
 				if (!isset($f['options']['twb-layout'])) {
-					$f['options']['twb-layout'] = \General\View\Helper\Form::LAYOUT_DEFAULT;
+					$f['options']['twb-layout'] = TwbBundleForm::LAYOUT_HORIZONTAL;
 					if (!isset($f['options']['column-size']))
 						$f['options']['column-size'] = 'sm-9';
 					if (!isset($f['options']['label_attributes']) || !isset($f['options']['label_attributes']['class']))
