@@ -18,6 +18,15 @@ return array(
 			'_' => 'General\View\Helper\_'
 		)
 	),
+	'doctrine' => array(
+		'configuration' => array(
+			'orm_default' => array(
+				'numeric_functions' => array(
+					'IF' => 'General\Doctrine\DQL\IFFunction'
+				),
+			),
+		),
+	),
 	'translator' => array(
 		'translation_file_patterns' => array(
 			array(
