@@ -72,6 +72,10 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
 			}
 			//Add field to the form
 			$this->add($f);
+			$inpuFilterClass = str_replace('\Form\\', '\Form\InputFilter\\', get_class($this));
+			if (class_exists($inpuFilterClass)) {
+				$this->setInputFilter(new $inpuFilterClass());
+			}
 		}
 	}
 
