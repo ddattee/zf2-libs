@@ -30,4 +30,9 @@ class TelFr implements ValidatorInterface
 		}
 		return true;
 	}
+
+	public function getMessages()
+	{
+		return $this->_messageTemplates;
+	}
 }
