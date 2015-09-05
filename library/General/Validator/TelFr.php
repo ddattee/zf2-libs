@@ -7,32 +7,27 @@
  */
 namespace General\Validator;
 
-use Zend\Validator\ValidatorInterface;
+use Zend\Validator\AbstractValidator;
 
-class TelFr implements ValidatorInterface
+class TelFr extends AbstractValidator
 {
 
 	const INVALID_TELFR = 'invalidTelFr';
 
-	protected $_messageTemplates = array(
+	protected $messageTemplates = array(
 		self::INVALID_TELFR => "'%value%' is not a valid telephone number.",
 	);
 
 	public function isValid($value)
 	{
 		$valueString = (string)$value;
-		$this->_setValue($valueString);
+		$this->setValue($valueString);
 		$regex = '/^(\+33\s)?([0-9]{2}\s?){5,}$/';
 
 		if (!preg_match($regex, $valueString)) {
-			$this->_error(self::INVALID_TELFR);
+			$this->error(self::INVALID_TELFR);
 			return false;
 		}
 		return true;
-	}
-
-	public function getMessages()
-	{
-		return $this->_messageTemplates;
 	}
 }
