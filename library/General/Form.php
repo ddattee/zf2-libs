@@ -8,7 +8,7 @@
 
 namespace General;
 
-use TwbBundle\Form\View\Helper\TwbBundleForm;
+
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -63,7 +63,7 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
 
 				//Default layout horizontal configuration
 				if (!isset($f['options']['twb-layout'])) {
-					$f['options']['twb-layout'] = TwbBundleForm::LAYOUT_HORIZONTAL;
+					$f['options']['twb-layout'] = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL;
 					if (!isset($f['options']['column-size']))
 						$f['options']['column-size'] = 'sm-9';
 					if (!isset($f['options']['label_attributes']) || !isset($f['options']['label_attributes']['class']))
@@ -72,11 +72,18 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
 			}
 			//Add field to the form
 			$this->add($f);
-			$inpuFilterClass = str_replace('\Form\\', '\Form\InputFilter\\', get_class($this));
-			if (class_exists($inpuFilterClass)) {
-				$this->setInputFilter(new $inpuFilterClass());
-			}
 		}
+		$this->loadInputFilter();
 	}
 
+	/**
+	 * Load input filter if one exist near the form
+	 */
+	public function loadInputFilter()
+	{
+		$inpuFilterClass = str_replace('\Form\\', '\Form\InputFilter\\', get_class($this));
+		if (class_exists($inpuFilterClass)) {
+			$this->setInputFilter(new $inpuFilterClass());
+		}
+	}
 }
