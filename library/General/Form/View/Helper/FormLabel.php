@@ -11,30 +11,20 @@ namespace General\Form\View\Helper;
 use TwbBundle\View\Helper\TwbBundleLabel;
 use Zend\Form\ElementInterface;
 
-class FormLabel
+class FormLabel extends \Zend\Form\View\Helper\FormLabel
 {
     /**
      * Invokable
      *
-     * @param ElementInterface|null $element
-     * @param null $labelContent
-     * @param null $position
+     * @param ElementInterface|null $element      Form element
+     * @param null                  $labelContent Label content
+     * @param null                  $position     Element position
      *
      * @return string
      */
     public function __invoke(ElementInterface $element = null, $labelContent = null, $position = null)
     {
-
-        // invoke parent and get form label
         $originalformLabel = parent::__invoke($element, $labelContent, $position);
-
-        // check if element is required
-        if ($element->hasAttribute('required')) {
-            // add a start to required elements
-            return '<span class="required-mark">*</span>' . $originalformLabel;
-        } else {
-            // not start to optional elements
-            return  $originalformLabel;
-        }
+        return  $originalformLabel . ($element->hasAttribute('required') ? '<span class="required-mark">*</span>' : '');
     }
 }
