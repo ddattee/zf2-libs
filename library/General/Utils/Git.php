@@ -40,7 +40,7 @@ class Git
      *
      * @return string
      */
-    public function pull($cwd = null)
+    public function pull(&$output = '', &$errors = '', $cwd = null)
     {
         //Locate the repository
         $cwd = !$cwd ? $this->getRepoPath() : $cwd;
@@ -55,6 +55,7 @@ class Git
         $descriptorspec = array(1 => array('pipe', 'w'), 2 => array('pipe', 'a'));
         $resource = proc_open($cmd, $descriptorspec, $pipes, $cwd);
         if (is_resource($resource)) {
+            $status = proc_get_status($resource);
             $output = stream_get_contents($pipes[1]);
             $errors = stream_get_contents($pipes[2]);
             fclose($pipes[1]);
@@ -62,6 +63,6 @@ class Git
             proc_close($resource);
         }
 
-        return $output . "\n" . $errors;
+        return $status['running'] === false ? $status['exitcode'] : $status['running'];
     }
 }
