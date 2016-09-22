@@ -2,20 +2,34 @@
 
 namespace General\Hydrator\Strategy;
 
-use Zend\Stdlib\Hydrator\Strategy\StrategyInterface;
+use Zend\Hydrator\Strategy\StrategyInterface;
 
 /**
  * DateTime hydration strategy
  */
 class DatetimeStrategy implements StrategyInterface
 {
-	public function extract($value)
-	{
-		return $value;
-	}
+    /**
+     * Convert date time to string
+     *
+     * @param \DateTime $value Date value
+     *
+     * @return mixed
+     */
+    public function extract($value)
+    {
+        return $value;
+    }
 
-	public function hydrate($value)
-	{
-		return ($value instanceof \DateTime ? $value : new \DateTime($value));
-	}
+    /**
+     * Convert string to DateTime
+     *
+     * @param string $value Date
+     *
+     * @return \DateTime
+     */
+    public function hydrate($value)
+    {
+        return ($value instanceof \DateTime ? $value : new \DateTime($value));
+    }
 }
