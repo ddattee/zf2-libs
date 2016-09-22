@@ -18,7 +18,7 @@ class DatetimeStrategy implements StrategyInterface
      */
     public function extract($value)
     {
-        return $value;
+        return $value->format('Y-m-d H:i:s');
     }
 
     /**
