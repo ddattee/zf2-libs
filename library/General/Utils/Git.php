@@ -11,14 +11,19 @@ namespace General\Utils;
 class Git
 {
     /**
-     * @var string Local branch to update
+     * @var string Remote name
      */
-    protected $localBranch  = 'master';
+    protected $remoteName = 'origin';
 
     /**
      * @var string Remote branch to pull from
      */
     protected $remoteBranch = 'master';
+
+    /**
+     * @var string Local branch to update
+     */
+    protected $localBranch  = 'master';
 
     /**
      * Try to find git repo path
@@ -30,7 +35,7 @@ class Git
     {
         $path = '.';
         if (strstr(__DIR__, 'vendor')) {
-            $path = substr(__DIR__, 0, strpos('/vendor'));
+            $path = substr(__DIR__, 0, strpos(__DIR__, '/vendor'));
         }
         return $path;
     }
@@ -38,7 +43,11 @@ class Git
     /**
      * Try to pull from current repository
      *
-     * @return string
+     * @param string &$output Command output
+     * @param string &$errors Command error return
+     * @param null   $cwd     Path to run the command into
+     *
+     * @return int
      */
     public function pull(&$output = '', &$errors = '', $cwd = null)
     {
@@ -47,10 +56,7 @@ class Git
         //Set the command to call
         $cmd = "sudo /usr/bin/git pull";
         //Git pull params
-        $cmd .= ' origin +refs/heads/' .
-            $this->remoteBranch .
-            ':refs/remotes/origin/' .
-            $this->localBranch;
+        $cmd .= ' ' . $this->remoteName . ' ' . $this->remoteBranch . ':' . $this->localBranch;
         //Run the command
         $descriptorspec = array(1 => array('pipe', 'w'), 2 => array('pipe', 'a'));
         $resource = proc_open($cmd, $descriptorspec, $pipes, $cwd);
