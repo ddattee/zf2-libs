@@ -53,6 +53,11 @@ class Git
     {
         //Locate the repository
         $cwd = !$cwd ? $this->getRepoPath() : $cwd;
+        //Check for git dir
+        if (!is_dir($cwd.'/.git')) {
+            $errors .= "No git repo found.";
+            return -100;
+        }
         //Set the command to call
         $cmd = "sudo /usr/bin/git pull";
         //Git pull params
