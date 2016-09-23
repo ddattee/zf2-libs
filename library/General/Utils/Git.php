@@ -61,11 +61,11 @@ class Git
         $descriptorspec = array(1 => array('pipe', 'w'), 2 => array('pipe', 'a'));
         $resource = proc_open($cmd, $descriptorspec, $pipes, $cwd);
         if (is_resource($resource)) {
-            $status = proc_get_status($resource);
             $output = stream_get_contents($pipes[1]);
             $errors = stream_get_contents($pipes[2]);
             fclose($pipes[1]);
             fclose($pipes[2]);
+            $status = proc_get_status($resource);
             proc_close($resource);
         }
 
