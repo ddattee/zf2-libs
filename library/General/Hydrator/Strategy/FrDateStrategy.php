@@ -30,6 +30,6 @@ class FrDateStrategy implements StrategyInterface
      */
     public function hydrate($value)
     {
-        return ($value instanceof \DateTime ? $value : new \DateTime($value));
+        return ($value instanceof \DateTime ? $value : \DateTime::createFromFormat('d/m/Y', $value));
     }
 }
