@@ -1,12 +1,13 @@
 <?php
 
 namespace General\Validator\Doctrine;
+
 use Doctrine\ORM\EntityManager;
 use Zend\Validator\AbstractValidator;
 
 /**
  * Created by PhpStorm.
- * User: Difidus
+ * User: David Dattée
  * Date: 09/10/2016
  * Time: 17:39
  */
