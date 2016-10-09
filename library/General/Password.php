@@ -24,11 +24,12 @@ class Password
         $seed = str_split('abcdefghijklmnopqrstuvwxyz'
             . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
             . '0123456789'
-            . '@!.$€');
+            . '@!$€');
         shuffle($seed);
         $rand = '';
-        foreach (array_rand($seed, 10) as $k)
+        foreach (array_rand($seed, 10) as $k) {
             $rand .= $seed[$k];
+        }
 
         return $rand;
     }
