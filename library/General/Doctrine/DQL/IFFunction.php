@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Difidus
- * Date: 01/09/2015
- * Time: 23:56
+ * IF function for DQL language
+ *
+ * @category  General
+ * @package   General\Doctrine\DQL
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\Doctrine\DQL;
@@ -18,27 +21,27 @@ use Doctrine\ORM\Query\Lexer;
  */
 class IFFunction extends FunctionNode
 {
-	private $expr = array();
+    private $expr = array();
 
-	public function parse(Parser $parser)
-	{
-		$parser->match(Lexer::T_IDENTIFIER);
-		$parser->match(Lexer::T_OPEN_PARENTHESIS);
-		$this->expr[] = $parser->ConditionalExpression();
+    public function parse(Parser $parser)
+    {
+        $parser->match(Lexer::T_IDENTIFIER);
+        $parser->match(Lexer::T_OPEN_PARENTHESIS);
+        $this->expr[] = $parser->ConditionalExpression();
 
-		for ($i = 0; $i < 2; $i++) {
-			$parser->match(Lexer::T_COMMA);
-			$this->expr[] = $parser->ArithmeticExpression();
-		}
+        for ($i = 0; $i < 2; $i++) {
+            $parser->match(Lexer::T_COMMA);
+            $this->expr[] = $parser->ArithmeticExpression();
+        }
 
-		$parser->match(Lexer::T_CLOSE_PARENTHESIS);
-	}
+        $parser->match(Lexer::T_CLOSE_PARENTHESIS);
+    }
 
-	public function getSql(SqlWalker $sqlWalker)
-	{
-		return sprintf('IF(%s, %s, %s)',
-			$sqlWalker->walkConditionalExpression($this->expr[0]),
-			$sqlWalker->walkArithmeticPrimary($this->expr[1]),
-			$sqlWalker->walkArithmeticPrimary($this->expr[2]));
-	}
+    public function getSql(SqlWalker $sqlWalker)
+    {
+        return sprintf('IF(%s, %s, %s)',
+            $sqlWalker->walkConditionalExpression($this->expr[0]),
+            $sqlWalker->walkArithmeticPrimary($this->expr[1]),
+            $sqlWalker->walkArithmeticPrimary($this->expr[2]));
+    }
 }

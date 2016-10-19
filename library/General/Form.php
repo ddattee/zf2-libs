@@ -1,13 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ddattee
- * Date: 29/06/2015
- * Time: 15:01
+ * Form class
+ *
+ * @category  General
+ * @package   General
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General;
-
 
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -16,6 +18,13 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
 {
     protected $serviceLocator = null;
 
+    /**
+     * Form constructor.
+     *
+     * @param $serviceLocator
+     * @param null $name
+     * @param array $options
+     */
     public function __construct($serviceLocator, $name = null, $options = array())
     {
         //Store ServiceLocator

@@ -1,7 +1,15 @@
 <?php
-namespace Rest\Authentication;
+/**
+ * Authentication Adapter interface
+ *
+ * @category  Rest
+ * @package   Rest\Authentication
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
+ */
 
-use Rest\Authentication;
+namespace Rest\Authentication;
 
 interface AdapterInterface
 {
@@ -18,5 +26,4 @@ interface AdapterInterface
      * @return mixed
      */
     public function clearAuthentication();
-
 }

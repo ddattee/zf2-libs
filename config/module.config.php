@@ -1,4 +1,13 @@
 <?php
+/**
+ * Libs default config
+ *
+ * @category  Libs
+ * @package   Libs\config
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
+ */
 
 return [
     'service_manager' => [

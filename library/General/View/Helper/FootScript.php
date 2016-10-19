@@ -1,10 +1,12 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Allow to separate HeadScript from FootScripts
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @category  General
+ * @package   General\View\Helper
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\View\Helper;

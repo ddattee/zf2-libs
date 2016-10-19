@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ddattee
- * Date: 30/06/2015
- * Time: 11:15
+ * Git library
+ *
+ * @category  General
+ * @package   General\Utils
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\Utils;

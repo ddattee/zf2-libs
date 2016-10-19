@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ddattee
- * Date: 29/06/2015
- * Time: 15:01
+ * Password generator
+ *
+ * @category  General
+ * @package   General\Utils
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General;

@@ -1,4 +1,13 @@
 <?php
+/**
+ * Logger factory to add debug logger into data/log/debug.log
+ *
+ * @category  General
+ * @package   General\Log\Factory
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
+ */
 
 namespace General\Log\Factory;
 

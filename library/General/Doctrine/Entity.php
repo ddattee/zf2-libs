@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Difidus
- * Date: 01/09/2015
- * Time: 23:56
+ * Entity
+ *
+ * @category  General
+ * @package   General\Doctrine
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\Doctrine;

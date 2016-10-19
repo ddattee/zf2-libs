@@ -1,14 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ddattee
- * Date: 03/07/2015
- * Time: 11:27
+ * Add required suffix to required element
+ *
+ * @category  General
+ * @package   General\Form\View\Helper
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\Form\View\Helper;
 
-use TwbBundle\View\Helper\TwbBundleLabel;
 use Zend\Form\ElementInterface;
 
 class FormLabel extends \Zend\Form\View\Helper\FormLabel

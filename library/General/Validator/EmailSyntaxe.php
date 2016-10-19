@@ -1,10 +1,14 @@
 <?php
-
 /**
- * Validate that a field is a french formated phone number
+ * Validate email syntaxe with a regex
  *
- * @author ddattee
+ * @category  General
+ * @package   General\Validator
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
+
 namespace General\Validator;
 
 use Zend\Validator\AbstractValidator;
@@ -18,6 +22,13 @@ class EmailSyntaxe extends AbstractValidator
         self::INVALID_EMAILSYNT => "'%value%' is not a valid email.",
     );
 
+    /**
+     * Validate email syntaxe on $value
+     *
+     * @param string $value
+     *
+     * @return bool
+     */
     public function isValid($value)
     {
         $valueString = strtolower((string)$value);

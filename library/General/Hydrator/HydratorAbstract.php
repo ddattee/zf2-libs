@@ -1,13 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Difidus
- * Date: 19/08/2015
- * Time: 23:03
+ * HydratorAbstract
+ *
+ * @category  General
+ * @package   General\Hydrator\Strategy
+ * @author    David Dattée <david.dattee@gmail.com>
+ * @copyright 2016 David Dattée
+ * @license   MIT License (MIT)
  */
 
 namespace General\Hydrator;
-
 
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
