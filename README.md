@@ -1,5 +1,9 @@
-# ddattee ZF2 Libraries
+Libs
+====
 
-This is ddattee ZF2 library.
+This is a extension library for ZF2.
 
-For class Git to run properly you need to allow "sudo /usr/bin/git pull" with no password asked to webserver user (www-data, apache...)
+It contains many class that ease ZF2 use.
+
+You can find doc on every class I'll do a complete doc one day. 
+
