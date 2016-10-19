@@ -11,21 +11,6 @@ namespace General\Utils;
 class Git
 {
     /**
-     * @var string Remote name
-     */
-    protected $remoteName = 'origin';
-
-    /**
-     * @var string Remote branch to pull from
-     */
-    protected $remoteBranch = 'master';
-
-    /**
-     * @var string Local branch to update
-     */
-    protected $localBranch  = 'master';
-
-    /**
      * Try to find git repo path
      * Assume it is just up to vendor
      *
@@ -43,13 +28,16 @@ class Git
     /**
      * Try to pull from current repository
      *
-     * @param string &$output Command output
-     * @param string &$errors Command error return
-     * @param null   $cwd     Path to run the command into
+     * @param string $remoteName   Remote central repositoriy name to pull from
+     * @param string $remoteBranch Remote branch to pull from
+     * @param string $localBranch  Local branch to update
+     * @param string &$output      Command output
+     * @param string &$errors      Command error return
+     * @param null   $cwd          Path to run the command into
      *
      * @return int
      */
-    public function pull(&$output = '', &$errors = '', $cwd = null)
+    public function pull($remoteName = 'origin', $remoteBranch = 'master', $localBranch = 'master', &$output = '', &$errors = '', $cwd = null)
     {
         //Locate the repository
         $cwd = !$cwd ? $this->getRepoPath() : $cwd;
@@ -59,9 +47,9 @@ class Git
             return -100;
         }
         //Set the command to call
-        $cmd = "sudo /usr/bin/git pull";
+        $cmd = "/usr/bin/git pull";
         //Git pull params
-        $cmd .= ' ' . $this->remoteName . ' ' . $this->remoteBranch . ':' . $this->localBranch;
+        $cmd .= ' ' . $remoteName . ' ' . $remoteBranch . ':' . $localBranch;
         //Run the command
         $descriptorspec = array(1 => array('pipe', 'w'), 2 => array('pipe', 'a'));
         $resource = proc_open($cmd, $descriptorspec, $pipes, $cwd);
