@@ -84,6 +84,35 @@ class Git
     }
 
     /**
+     * Try to fetch from current repository
+     *
+     * @param string $remoteName   Remote central repositoriy name to pull from
+     * @param string $remoteBranch Remote branch to pull from
+     * @param string $localBranch  Local branch to update
+     * @param string &$output      Command output
+     * @param string &$errors      Command error return
+     * @param null   $cwd          Path to run the command into
+     *
+     * @return int|mixed
+     */
+    public function fetch($remoteName = 'origin', $remoteBranch = 'master', $localBranch = 'master', &$output = '', &$errors = '', $cwd = null)
+    {
+        //Locate the repository
+        $cwd = !$cwd ? $this->getRepoPath() : $cwd;
+        //Check for git dir
+        if (!is_dir($cwd.'/.git')) {
+            $errors .= "No git repo found.";
+            return -100;
+        }
+        //Set the command to call
+        $cmd = "/usr/bin/git fetch";
+        //Git pull params
+        $cmd .= ' ' . $remoteName . ' ' . $remoteBranch . ':' . $localBranch;
+
+        return $this->call($cmd, $cwd, $output, $errors);
+    }
+
+    /**
      * Git reset
      *
      * @param string $remoteName   Remote central repositoriy name to pull from
