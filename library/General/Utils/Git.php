@@ -115,9 +115,6 @@ class Git
     /**
      * Git reset
      *
-     * @param string $remoteName   Remote central repositoriy name to pull from
-     * @param string $remoteBranch Remote branch to pull from
-     * @param string $localBranch  Local branch to update
      * @param bool   $hard         Reset hard if not HEAD will be used
      * @param string &$output      Command output
      * @param string &$errors      Command error return
@@ -125,7 +122,7 @@ class Git
      *
      * @return int|mixed
      */
-    public function reset($remoteName = 'origin', $remoteBranch = 'master', $localBranch = 'master', $hard = false, &$output = '', &$errors = '', $cwd = null) {
+    public function reset($hard = false, &$output = '', &$errors = '', $cwd = null) {
         //Locate the repository
         $cwd = !$cwd ? $this->getRepoPath() : $cwd;
         //Check for git dir
@@ -134,9 +131,9 @@ class Git
             return -100;
         }
         //Set the command to call
-        $cmd = "/usr/bin/git pull";
+        $cmd = "/usr/bin/git reset";
         //Git reset params
-        $cmd .= ' ' . ($hard ? '--hard' : 'HEAD') . ' ' . $remoteName . ' ' . $remoteBranch . ':' . $localBranch;
+        $cmd .= ' ' . ($hard ? '--hard' : '--soft');
 
         return $this->call($cmd, $cwd, $output, $errors);
     }
