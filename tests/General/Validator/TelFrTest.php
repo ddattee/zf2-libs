@@ -1,9 +1,9 @@
 <?php
 /**
- * Tools module
+ * Libs tests
  *
- * @category  Tools
- * @package   Tools
+ * @category  Tests\General
+ * @package   Tests\General\Validator
  * @author    Difidus
  * @copyright 2016 David Dattée
  * @license   MIT License (MIT)
@@ -11,8 +11,8 @@
 
 namespace Tests\General\Validator;
 
-use General\Validator\TelFr;
 use Tests\AbstractTest;
+use General\Validator\TelFr;
 
 class TelFrTest extends AbstractTest
 {
