@@ -40,21 +40,25 @@ abstract class AbstractController extends AbstractActionController
     /**
      * Before l'action
      *
-     * @param MvcEvent $e
+     * @param MvcEvent $exception
+     *
+     * @return MvcEvent
      */
-    public function preDispatch(MvcEvent $e)
+    public function preDispatch(MvcEvent $exception)
     {
-
+        return $exception;
     }
 
     /**
      * After l'action
      *
-     * @param MvcEvent $e
+     * @param MvcEvent $exception
+     *
+     * @return MvcEvent
      */
-    public function postDispatch(MvcEvent $e)
+    public function postDispatch(MvcEvent $exception)
     {
-
+        return $exception;
     }
 
     /**

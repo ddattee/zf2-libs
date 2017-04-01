@@ -27,7 +27,8 @@ class ServiceAbstract implements AbstractFactoryInterface, ServiceLocatorAwareIn
      * Set service locator
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
+     *
+     * @return $this
      */
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
@@ -38,6 +39,7 @@ class ServiceAbstract implements AbstractFactoryInterface, ServiceLocatorAwareIn
 
     /**
      * Load mapper into the service
+     *
      * @param MapperAbstract $mapper
      */
     public function setMapper(MapperAbstract $mapper)
@@ -47,6 +49,7 @@ class ServiceAbstract implements AbstractFactoryInterface, ServiceLocatorAwareIn
 
     /**
      * Return the mapper
+     *
      * @return MapperAbstract
      */
     public function getMapper()
@@ -58,9 +61,12 @@ class ServiceAbstract implements AbstractFactoryInterface, ServiceLocatorAwareIn
      * Determine if we can create a service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return bool
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
@@ -71,9 +77,12 @@ class ServiceAbstract implements AbstractFactoryInterface, ServiceLocatorAwareIn
      * Create service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return mixed
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {

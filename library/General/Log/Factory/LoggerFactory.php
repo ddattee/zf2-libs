@@ -11,9 +11,10 @@
 
 namespace General\Log\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
 use Zend\Log\Logger;
 use Zend\Log\Writer\Stream;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Created by PhpStorm.
@@ -27,16 +28,22 @@ class LoggerFactory implements FactoryInterface
      * Create logger
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return IndexController
+     *
+     * @return Logger
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function createService(ServiceLocatorInterface $serviceLocator) {
         $logDir = PRIVATE_PATH . '/log/';
         $logFile = $logDir . 'debug.log';
+
         is_dir($logDir) ? : @mkdir($logDir, 0755, true);
         file_exists($logFile) ? : @touch($logFile);
+
         $logger = new Logger();
         $writer = new Stream($logFile);
         $logger->addWriter($writer);
+
         return $logger;
     }
 }

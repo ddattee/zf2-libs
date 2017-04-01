@@ -23,12 +23,18 @@ use Zend\Http\Client as HttpClient;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Client extends HttpClient implements
-    ServiceLocatorAwareInterface
+/**
+ * Class Client
+ *
+ * @package Rest
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
+class Client extends HttpClient implements ServiceLocatorAwareInterface
 {
-    const GET = 'GET';
-    const POST = 'POST';
-    const PUT = 'PUT';
+    const GET    = 'GET';
+    const POST   = 'POST';
+    const PUT    = 'PUT';
     const DELETE = 'DELETE';
 
     /**
@@ -53,7 +59,7 @@ class Client extends HttpClient implements
     protected $disable_auth = false;
 
     /**
-     * @var AdapterInterface $_auth_adaptor Rest authentication adaptor
+     * @var \Rest\Authentication\AdapterInterface $_auth_adaptor Rest authentication adaptor
      */
     private $_auth_adaptor;
     /**
@@ -86,6 +92,7 @@ class Client extends HttpClient implements
 
     /**
      * Load the config of the rest module
+     *
      * @return array|mixed
      */
     public function getRestConfig()
@@ -98,8 +105,11 @@ class Client extends HttpClient implements
 
     /**
      * Call GET method on a service with the given parameters
+     *
      * @param null|array $params Array of key => value to replace in service URL
+     *
      * @return mixed
+     *
      * @throws InvalidMethodException
      */
     public function get($params = array())
@@ -110,9 +120,12 @@ class Client extends HttpClient implements
 
     /**
      * Call POST method on a service with the given parameters and sending the content as JSON
+     *
      * @param array $content Array send as JSON in the request body
      * @param array $params Array of key => value to replace in service URL
+     *
      * @return mixed
+     *
      * @throws InvalidMethodException
      */
     public function post($content, $params = array())
@@ -124,9 +137,12 @@ class Client extends HttpClient implements
 
     /**
      * Call PUT method with given params
+     *
      * @param null|array $content Array send as JSON in the request body
      * @param array $params Array of key => value to replace in service URL
+     *
      * @return mixed
+     *
      * @throws InvalidMethodException
      * @throws MissingParametersException
      */
@@ -139,8 +155,11 @@ class Client extends HttpClient implements
 
     /**
      * Call DELETE method on a service with the given parameters
+     *
      * @param null|array $params Array of key => value to replace in service URL
+     *
      * @return mixed
+     *
      * @throws InvalidMethodException
      */
     public function delete($params = array())
@@ -151,10 +170,13 @@ class Client extends HttpClient implements
 
     /**
      * Authenticate for ws call
+     *
      * @param string $username
      * @param string $password
      * @param string|AdapterInterface $adapter
+     *
      * @return mixed
+     *
      * @throws AuthenticationException
      */
     public function authenticate($username = null, $password = null, $adapter = 'OAuth2')
@@ -178,7 +200,9 @@ class Client extends HttpClient implements
 
     /**
      * Call auth clearing function of the auth adaptor
+     *
      * @param string|AdapterInterface $adapter
+     *
      * @return bool
      */
     public function clearAuthentication($adapter = 'OAuth2')
@@ -193,7 +217,9 @@ class Client extends HttpClient implements
 
     /**
      * Store given params and init HttpClient
+     *
      * @param array $config
+     *
      * @throws MissingParametersException
      */
     public function init($config = array())
@@ -211,6 +237,7 @@ class Client extends HttpClient implements
 
     /**
      * Enable or disable cache
+     *
      * @param bool $enable
      */
     public function enableCache($enable = true)
@@ -220,6 +247,7 @@ class Client extends HttpClient implements
 
     /**
      * Enable or disable cache
+     *
      * @param array $options
      */
     public function setCacheOptions($options = array())
@@ -260,6 +288,7 @@ class Client extends HttpClient implements
 
     /**
      * Init Http\Client default config in 'http_config' node
+     *
      * @param array $config
      */
     private function _initHttpConfig($config)
@@ -275,7 +304,9 @@ class Client extends HttpClient implements
 
     /**
      * Store the config in the current object
+     *
      * @param $config
+     *
      * @throws AuthenticationException
      * @throws InvalidWsUrlException
      */
@@ -302,7 +333,9 @@ class Client extends HttpClient implements
 
     /**
      * Initialize the auth adapter requested
+     *
      * @param string $adapter
+     *
      * @throws AuthenticationException
      */
     private function _loadAuthAdaptor($adapter)
@@ -331,8 +364,11 @@ class Client extends HttpClient implements
 
     /**
      * Call an the REST API with the requested method
+     *
      * @param string $method An Http method to call (GET, POST...)
+     *
      * @return mixed
+     *
      * @throws AuthenticationException
      * @throws InvalidMethodException
      * @throws ServiceErrorException
@@ -363,7 +399,9 @@ class Client extends HttpClient implements
 
     /**
      * Post call treatment convert JSON to stdClass if needed
-     * @param $response
+     *
+     * @param \Zend\Http\Response $result
+     *
      * @return mixed
      */
     public function _postCall($result)
@@ -377,7 +415,9 @@ class Client extends HttpClient implements
 
     /**
      * Handle the call responses with status other than 200
+     *
      * @param \Zend\Http\Response $result
+     *
      * @throws AuthenticationException
      * @throws ServiceErrorException
      */
@@ -393,7 +433,9 @@ class Client extends HttpClient implements
 
     /**
      * Check if method is declared in the current model
+     *
      * @param string $method
+     *
      * @return bool
      */
     private function _methodAllowed($method)
@@ -404,8 +446,10 @@ class Client extends HttpClient implements
 
     /**
      * Format the service URI with the params given
-     * @param $method The Http method used GET, POST, PUT...
-     * @param null|array $params An array of params to complete the service URI if needed
+     *
+     * @param string     $method       The Http method used GET, POST, PUT...
+     * @param null|array $query_params An array of params to complete the service URI if needed
+     *
      * @throws MissingParametersException When a required param has been given
      */
     private function _loadService($method, $query_params = array())
@@ -432,9 +476,11 @@ class Client extends HttpClient implements
 
     /**
      * Verify that all required params have been given and return the missing ones
+     *
      * @param array $search
      * @param array $params
      * @param array $optional
+     *
      * @return array
      */
     private function _checkParams(&$search, $params, $optional = array())
@@ -451,22 +497,26 @@ class Client extends HttpClient implements
 
     /**
      * Return the param with ":" before it ex: 'param' -> ':param'
+     *
      * @param string $param
-     * @param int $k
+     * @param int $key
      * @param array $optional
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private function _formatSearchParams(&$param, $k, &$optional)
+    public function _formatSearchParams(&$param, $key, &$optional)
     {
         $param = '#' . (in_array('::' . $param, $optional) ? '/::' : ':') . $param . '#';
     }
 
     /**
      * Return the param with ":" before it ex: 'param' -> ':param'
+     *
      * @param string $value
      * @param string $param
      * @param array $optional
      */
-    private function _formatReplaceParams(&$value, $param, &$optional)
+    public function _formatReplaceParams(&$value, $param, &$optional)
     {
         //If it's an optional param we had a '/' before it to
         if (in_array('::' . $param, $optional)
@@ -478,6 +528,7 @@ class Client extends HttpClient implements
 
     /**
      * Generate cache ID
+     *
      * @return string
      */
     protected function getCacheID()
@@ -487,6 +538,7 @@ class Client extends HttpClient implements
 
     /**
      * Check if the cache has been enabled for the Rest client and the current service
+     *
      * @return bool
      */
     protected function isCacheEnable()
@@ -499,6 +551,7 @@ class Client extends HttpClient implements
 
     /**
      * Init the Http Client witht the config stored in _init()
+     *
      * @param bool $force Force cache initialisation even if it is not enabled
      */
     private function _initCache($force = false)

@@ -15,17 +15,39 @@ use Rest\Authentication\AdapterInterface;
 use Rest\Client;
 use Rest\Exception\AuthenticationException;
 use Rest\Exception\InvalidAuthenticationException;
+use Zend\Filter\Boolean;
 use Zend\Session\Container;
 
 class OAuth2Adapter implements AdapterInterface
 {
+    /**
+     * @var string
+     */
     private $_auth_service = 'auth';
+
+    /**
+     * @var
+     */
     private $_auth_client;
 
+    /**
+     * @var Container
+     */
     protected $session;
+
+    /**
+     * @var
+     */
     protected $_auth_response;
+
+    /**
+     * @var
+     */
     protected $_auth_token;
 
+    /**
+     * OAuth2Adapter constructor.
+     */
     public function __construct()
     {
         $this->session = new Container(get_class($this));
@@ -33,13 +55,18 @@ class OAuth2Adapter implements AdapterInterface
 
     /**
      * Add authentication header to Http client or try to authenticate if no authentication has been done yet
+     *
      * @param Client|null $http_client
      * @param null|string $username
      * @param null|string $password
-     * @param string $grant_type
-     * @param string $client_id
+     * @param string      $grant_type
+     * @param string      $client_id
+     *
      * @return bool|string
+     *
      * @throws AuthenticationException
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function authenticate(Client &$http_client = null, $username = null, $password = null, $grant_type = 'password', $client_id = 'app1j1v')
     {
@@ -51,7 +78,7 @@ class OAuth2Adapter implements AdapterInterface
             $this->session->auth_params->grant_type = $grant_type;
             $this->session->auth_params->client_id = $client_id;
             $response = $this->_doAuthenticate($http_client);
-        } else if ($this->isAuthenticated() && $grant_type == 'refresh_token' && !is_null($password)) {
+        } elseif ($this->isAuthenticated() && $grant_type == 'refresh_token' && !is_null($password)) {
             $this->session->auth_params->password = $password;
             $this->session->auth_params->grant_type = $grant_type;
             $this->session->auth_params->client_id = $client_id;
@@ -177,14 +204,17 @@ class OAuth2Adapter implements AdapterInterface
 
     /**
      * Prepare authentication request
-     * @param Client $http_client
+     *
+     * @param Client  $http_client
+     * @param Boolean $refresh
      */
-    private function _prepareAuthentication(Client $http_client, $refresh = false)
+    private function _prepareAuthentication(Client $http_client)
     {
         $this->_auth_client = new Client();
         $this->_auth_client->setUri($http_client->getUri()->getScheme() . '://' . $http_client->getUri()->getHost() . '/' . $this->_auth_service);
         $this->_auth_client->setMethod('POST');
         $this->_auth_client->setRawBody(json_encode($this->_prepareAuthData()));
+
         $headers = $this->_auth_client->getRequest()->getHeaders();
         $headers->addHeaderLine('Accept', 'application/json');
         $headers->addHeaderLine('Content-Type', 'application/json');

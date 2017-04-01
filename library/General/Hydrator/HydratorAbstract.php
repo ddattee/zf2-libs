@@ -57,6 +57,13 @@ class HydratorAbstract implements HydratorInterface, ServiceLocatorAwareInterfac
         return $object;
     }
 
+    /**
+     * Extract data
+     *
+     * @param $array
+     *
+     * @return mixed
+     */
     private function extractArray(&$array)
     {
         foreach ($array as $k => $item) {
@@ -65,6 +72,13 @@ class HydratorAbstract implements HydratorInterface, ServiceLocatorAwareInterfac
         return $array;
     }
 
+    /**
+     * Extract object data into an array
+     *
+     * @param $object
+     *
+     * @return array|string
+     */
     private function extractObject($object)
     {
         $arr = array();
@@ -101,9 +115,12 @@ class HydratorAbstract implements HydratorInterface, ServiceLocatorAwareInterfac
      * Determine if we can create a service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return bool
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
@@ -114,9 +131,12 @@ class HydratorAbstract implements HydratorInterface, ServiceLocatorAwareInterfac
      * Create service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return mixed
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {

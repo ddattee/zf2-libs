@@ -60,29 +60,48 @@ class Form extends \Zend\Form\Form implements ServiceLocatorAwareInterface
      */
     protected function loadFields($fields)
     {
-        foreach ($fields as $f) {
-            if (is_array($f)) {
-                //Fields are all required if not set to false
-                if ((!isset($f['required']) || $f['required'] != false)
-                    && (!isset($f['attributes']) || !isset($f['attributes']['required']))
-                ) {
-                    $f['attributes']['required'] = 'required';
-                    $f['option']['label_options']['requiredSuffix'] = ' *';
-                }
-
-                //Default layout horizontal configuration
-                if (!isset($f['options']['twb-layout'])) {
-                    $f['options']['twb-layout'] = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL;
-                    if (!isset($f['options']['column-size']))
-                        $f['options']['column-size'] = 'sm-9';
-                    if (!isset($f['options']['label_attributes']) || !isset($f['options']['label_attributes']['class']))
-                        $f['options']['label_attributes']['class'] = 'col-sm-3';
-                }
+        foreach ($fields as $field) {
+            if (is_array($field)) {
+                $this->configureRequired($field);
+                $this->configureLayout($field);
             }
             //Add field to the form
-            $this->add($f);
+            $this->add($field);
         }
         $this->loadInputFilter();
+    }
+
+    /**
+     * Configure required
+     *
+     * @param &$field
+     */
+    protected function configureRequired(&$field)
+    {
+        //Fields are all required if not set to false
+        if ((!isset($field['required']) || $field['required'] != false)
+            && (!isset($field['attributes']) || !isset($field['attributes']['required']))
+        ) {
+            $field['attributes']['required'] = 'required';
+            $field['option']['label_options']['requiredSuffix'] = ' *';
+        }
+    }
+
+    /**
+     * Set field layout configuration
+     *
+     * @param &$field
+     */
+    protected function configureLayout(&$field)
+    {
+        //Default layout horizontal configuration
+        if (!isset($field['options']['twb-layout'])) {
+            $field['options']['twb-layout'] = \TwbBundle\Form\View\Helper\TwbBundleForm::LAYOUT_HORIZONTAL;
+            if (!isset($field['options']['column-size']))
+                $field['options']['column-size'] = 'sm-9';
+            if (!isset($field['options']['label_attributes']) || !isset($field['options']['label_attributes']['class']))
+                $field['options']['label_attributes']['class'] = 'col-sm-3';
+        }
     }
 
     /**

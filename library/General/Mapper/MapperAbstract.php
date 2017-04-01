@@ -24,9 +24,12 @@ class MapperAbstract implements AbstractFactoryInterface, ServiceLocatorAwareInt
      * Determine if we can create a service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return bool
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
@@ -37,9 +40,12 @@ class MapperAbstract implements AbstractFactoryInterface, ServiceLocatorAwareInt
      * Create service with name
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @param $name
-     * @param $requestedName
+     * @param string                  $name
+     * @param string                  $requestedName
+     *
      * @return mixed
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {

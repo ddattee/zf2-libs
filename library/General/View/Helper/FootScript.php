@@ -27,6 +27,10 @@ use Zend\View\Exception;
  * @method FootScript offsetSetScript($index, $src, $type = 'text/javascript', $attrs = array())
  * @method FootScript prependScript($script, $type = 'text/javascript', $attrs = array())
  * @method FootScript setScript($script, $type = 'text/javascript', $attrs = array())
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class FootScript extends View\Helper\Placeholder\Container\AbstractStandalone
 {

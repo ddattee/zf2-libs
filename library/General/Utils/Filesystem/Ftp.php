@@ -227,10 +227,14 @@ class Ftp
      * @param string $local_file The local destination file path
      * @param array $params Connection parameters to the remote ftp server : ['server'=>, 'login'=>, 'password'=>]
      * @param int $timeout
+     *
      * @return bool
+     *
      * @throws Ftp_Exception
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function getFile($remote_file, $local_file, $params, $timeout = 600)
+    public static function downloadFile($remote_file, $local_file, $params, $timeout = 600)
     {
         // Mise en place d'une connexion basique
         $conn_id = ftp_connect($params['server']);
@@ -254,9 +258,8 @@ class Ftp
         ftp_pasv($conn_id, true);
 
         // Tentative de téléchargement du fichier $remote_file et sauvegarde dans le fichier $local_file
-        if (ftp_get($conn_id, $local_file, $remote_file, FTP_BINARY)) {
-            $response = true;
-        } else {
+        $response = ftp_get($conn_id, $local_file, $remote_file, FTP_BINARY);
+        if (!$response) {
             throw new Ftp_Exception(implode('<br>', error_get_last()));
         }
 

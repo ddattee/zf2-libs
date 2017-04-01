@@ -24,6 +24,12 @@
 
 namespace Vendors;
 
+/**
+ * Class Getext
+ * @package Vendors
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 class Getext
 {
 

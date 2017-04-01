@@ -24,7 +24,14 @@ class Email extends Message implements ServiceLocatorAwareInterface, AbstractFac
 {
     use ServiceLocatorAwareTrait;
 
+    /**
+     * @var string
+     */
     protected $layout = '';
+
+    /**
+     * @var array
+     */
     protected $config = array();
 
     /**
@@ -115,12 +122,16 @@ class Email extends Message implements ServiceLocatorAwareInterface, AbstractFac
     public function setBody($html)
     {
         $content = str_replace('%content%', $html, $this->getLayoutContent());
+
         $htmlpart = new Part($content);
         $htmlpart->type = "text/html";
+
         $txtpart = new Part(strip_tags($html));
-//        $txtpart->type = "text/plain";
+        $txtpart->type = "text/plain";
+
         $body = new \Zend\Mime\Message();
-        $body->setParts(array($htmlpart));
+        $body->setParts(array($htmlpart, $txtpart));
+
         return parent::setBody($body);
     }
 
