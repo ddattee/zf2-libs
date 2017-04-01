@@ -14,11 +14,13 @@ namespace General\Ogone;
 /**
  * Description of Security
  *
+ * SHA IN REF  : https://payment-services.ingenico.com/fr/fr/ogone/support/guides/integration%20guides/e-commerce/security-pre-payment-check#shainsignature
+ * SHA OUT REF : https://payment-services.ingenico.com/fr/fr/ogone/support/guides/integration%20guides/e-commerce/transaction-feedback#redirectionwithdatabaseupdate
+ *
  * @author ddattee
  */
 class Security
 {
-
     /**
      * Allowed keys for SHA-IN
      * @var array
@@ -69,12 +71,15 @@ class Security
     /**
      * Generate the SHA1 key based on the given params
      *
-     * @param array $params Array of paramas to use to generate the SHA1
-     * @param string $separator Separator to split the string
-     * @param string $io Define the reference for the key : in/out
+     * @param array  $params Array of paramas to use to generate the SHA1
+     * @param string $secret Separator to split the string
+     * @param string $io     Define the reference for the key : in/out
+     *
      * @return string The generated SHASign
+     *
+     * @throws ParamException
      */
-    static public function generateShaSign($params, $separator, $io = 'in')
+    public function generateShaSign($params, $secret, $io = 'in')
     {
         $str = '';
         //Change the key to upper case
@@ -83,16 +88,17 @@ class Security
         ksort($params);
         //Build the string
         foreach ($params as $key => $value) {
-            $allowed = 'sha' . $io . '_allowed';
             //Check that the keys are allowed in the sha1 string
-            if (in_array($key, self::$$allowed)) {
+            if ($this->isValidParam($key, $io)) {
                 //Check that the value isn't empty
-                if ('' != $value) {
-                    $str .= strtoupper($key) . '=' . $value . $separator;
+                if (strlen($value) > 0) {
+                    $str .= strtoupper($key) . '=' . $value . $secret;
                 }
+            } else {
+                throw new ParamException('Parameter "' . $key . '" is not allowed for Sha' . ucfirst($io));
             }
         }
-        return sha1($str);
+        return strtoupper(sha1($str));
     }
 
     /**
@@ -101,8 +107,22 @@ class Security
      * @param string $shasign_response
      * @return bool
      */
-    static public function isValidShasign($shasign, $shasign_response)
+    public function isValidShasign($shasign, $shasign_response)
     {
         return (strtoupper($shasign) === strtoupper($shasign_response));
+    }
+
+    /**
+     * Check if the param is allowed in the given IO
+     *
+     * @param string $param
+     * @param string $io
+     *
+     * @return bool
+     */
+    public function isValidParam($param, $io = 'in')
+    {
+        $allowed = strtoupper('sha' . $io . '_allowed');
+        return in_array($param, constant('self::' . $allowed));
     }
 }
