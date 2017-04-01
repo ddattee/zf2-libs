@@ -9,7 +9,7 @@
  * @license   MIT License (MIT)
  */
 
-namespace General;
+namespace General\Utils;
 
 /**
  * Class Password
@@ -23,14 +23,15 @@ class Password
      *
      * @return string
      */
-    public static function generate() {
-        $seed = str_split('abcdefghijklmnopqrstuvwxyz'
+    public function generate() {
+        $rand   = '';
+        $length = rand(8, 12);
+        $seed   = str_split('abcdefghijklmnopqrstuvwxyz'
             . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
             . '0123456789'
             . '@!$€');
         shuffle($seed);
-        $rand = '';
-        foreach (array_rand($seed, 10) as $k) {
+        foreach (array_rand($seed, $length) as $k) {
             $rand .= $seed[$k];
         }
 
