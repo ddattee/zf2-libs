@@ -25,6 +25,7 @@ abstract class AbstractController extends AbstractActionController
 
     /**
      * Attache les évènements
+     *
      * @see \Zend\Mvc\Controller\AbstractController::attachDefaultListeners()
      */
     protected function attachDefaultListeners()
@@ -38,6 +39,7 @@ abstract class AbstractController extends AbstractActionController
 
     /**
      * Before l'action
+     *
      * @param MvcEvent $e
      */
     public function preDispatch(MvcEvent $e)
@@ -47,6 +49,7 @@ abstract class AbstractController extends AbstractActionController
 
     /**
      * After l'action
+     *
      * @param MvcEvent $e
      */
     public function postDispatch(MvcEvent $e)
@@ -56,7 +59,9 @@ abstract class AbstractController extends AbstractActionController
 
     /**
      * Init view model
+     *
      * @param bool $reset Should it return a new ViewModel
+     *
      * @return ViewModel
      */
     protected function getViewModel($reset = false)
@@ -66,11 +71,13 @@ abstract class AbstractController extends AbstractActionController
 
     /**
      * Set view model
-     * @return null|ViewModel
+     *
+     * @return $this
      */
     protected function setViewModel(ViewModel $v)
     {
         $this->_view = $v;
+        return $this;
     }
 
 }

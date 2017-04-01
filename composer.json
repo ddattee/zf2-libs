@@ -1,35 +1,36 @@
 {
-  "name": "ddattee/libs",
+  "name"       : "ddattee/libs",
   "description": "ZF2 ddattee Libs",
-  "type": "library",
-  "keywords": [
+  "type"       : "library",
+  "keywords"   : [
     "rest",
     "zf2"
   ],
   "homepage": "http://www.ddattee.fr/",
-  "license": "Apache 2.0",
-  "require": {
-    "php": ">=5.5",
-    "zendframework/zend-form": "^2.0",
-    "zendframework/zend-filter": "^2.0",
-    "zendframework/zend-http": "^2.0",
-    "zendframework/zend-uri": "^2.0",
+  "license" : "Apache 2.0",
+  "require" : {
+    "php"                         : ">=5.5",
+    "zendframework/zend-form"     : "^2.0",
+    "zendframework/zend-filter"   : "^2.0",
+    "zendframework/zend-http"     : "^2.0",
+    "zendframework/zend-uri"      : "^2.0",
     "zendframework/zend-validator": "^2.0",
-    "neilime/zf2-twb-bundle": "^2.0"
+    "zendframework/zend-crypt"    : "^2.0",
+    "neilime/zf2-twb-bundle"      : "^2.0"
   },
   "authors": [
     {
-      "name": "David Dattee",
+      "name" : "David Dattee",
       "email": "david.dattee@gmail.com"
     }
   ],
   "autoload": {
     "psr-4": {
       "General\\": "library/General/",
-      "Rest\\": "library/Rest/",
+      "Rest\\"   : "library/Rest/",
       "Vendors\\": "library/Vendors/",
-      "Libs\\": "src/",
-      "Tests\\": "tests/"
+      "Libs\\"   : "src/",
+      "Tests\\"  : "tests/"
     },
     "classmap": [
       "src/Libs/Module.php"
@@ -38,7 +39,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "https://packages.zendframework.com/"
+      "url" : "https://packages.zendframework.com/"
     }
   ],
   "extra": {
@@ -47,7 +48,7 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^4.0",
+    "phpunit/phpunit"        : "^4.0",
     "zendframework/zend-test": "^2.0"
   }
 }

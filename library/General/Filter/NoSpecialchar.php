@@ -139,7 +139,7 @@ class NoSpecialchar implements FilterInterface
 
         //Remplace les caracteres speciaux
         $in = array('/ /', '/\?/', '/\!/', '/\,/', '/\:/', "/\'/", '/\&/', '/\(/', '/\)/', '#\\\{1,}#', '#/#');
-        $out = array('-', '', '', '', '', '-', 'et', '', '', '-', '-');
+        $out = array('-', '', '', '', '', '-', 'and', '', '', '-', '-');
         $cleaned = preg_replace($in, $out, $cleaned);
 
         //Remplace les double tirets qui ont pu apparaitre

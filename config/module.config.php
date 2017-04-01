@@ -25,10 +25,10 @@ return [
     ],
     'view_helpers' => [
         'invokables' => [
+            '_'                 => 'General\View\Helper\_',
             'FormElementErrors' => 'General\View\Helper\Form\FormElementErrors',
-            'form' => 'General\View\Helper\Form',
-            'FootScript' => 'General\View\Helper\FootScript',
-            '_' => 'General\View\Helper\_'
+            'form'              => 'General\View\Helper\Form',
+            'FootScript'        => 'General\View\Helper\FootScript',
         ],
     ],
     'doctrine' => [
@@ -43,14 +43,14 @@ return [
     'translator' => [
         'translation_file_patterns' => [
             [
-                'type' => 'phpArray',
+                'type'     => 'phpArray',
                 'base_dir' => __DIR__ . '/../resources/languages',
-                'pattern' => '%s/Zend_Validate.php',
+                'pattern'  => '%s/Zend_Validate.php',
             ],
             [
-                'type' => 'phpArray',
+                'type'     => 'phpArray',
                 'base_dir' => __DIR__ . '/../resources/languages',
-                'pattern' => '%s/Zend_Captcha.php',
+                'pattern'  => '%s/Zend_Captcha.php',
             ],
         ],
     ],
@@ -71,35 +71,35 @@ return [
     ],
     'email' => [
         'templates' => [
-            'path' => '',
+            'path'   => '',
             'layout' => '',
         ],
-        'smtp' => [
-            'name' => '',
-            'host' => '',
-            'port' => '',
-            'connection_class' => '',
+        'smtp'      => [
+            'name'              => '',
+            'host'              => '',
+            'port'              => '',
+            'connection_class'  => '',
             'connection_config' => [
-                'username' => '',
-                'password' => '',
-//                'ssl' => 'tls',
+                'username'      => '',
+                'password'      => '',
+//                'ssl'         => 'tls',
             ],
         ],
     ],
     'rest' => [
         //The base URL of the REST API
-        'api_url' => '',
+        'api_url'        => '',
         // If a static access token exists (token that does not expire)
-        'access_token' => '',
+        'access_token'   => '',
         //Enable or disable the cache
-        'cache_enable' => false,
-        'cache_dir' => __DIR__ . '/../' . 'cache',
+        'cache_enable'   => false,
+        'cache_dir'      => __DIR__ . '/../' . 'cache',
         // Else will retrieve a token through authentication method
         'authentication' => [
             'username' => '',
             'password' => ''
         ],
         //Zend\Http\Client Config overwrite
-        'http_config' => []
+        'http_config'    => []
     ],
 ];

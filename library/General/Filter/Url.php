@@ -20,12 +20,12 @@ class Url implements FilterInterface
     /**
      * Returns the string $value, removing all accents, on lower case and remove special caracteres
      *
-     * @param  string $value
+     * @param  string $chaine Value to filter
+     *
      * @return string
      */
     public function filter($chaine)
     {
-
         $char = new NoSpecialchar();
         return strtolower($char->filter($chaine));
     }
