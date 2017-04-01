@@ -15,7 +15,6 @@ use Zend\Validator\AbstractValidator;
 
 class TelFr extends AbstractValidator
 {
-
     const INVALID_TELFR = 'invalidTelFr';
 
     protected $messageTemplates = array(
@@ -26,12 +25,15 @@ class TelFr extends AbstractValidator
     {
         $valueString = (string)$value;
         $this->setValue($valueString);
-        $regex = '/^(\+33\s)?([0-9]{2}\s?){5,}$/';
+        $separator   = '[.\s-]';
+        $i18n        = '/^(((\+|00)33)' . $separator . '[0-9]' . $separator . '([0-9]{2}' . $separator . '?){4})$/';
+        $local       = '/^(([0-9]{2}' . $separator . '?){5})$/';
 
-        if (!preg_match($regex, $valueString)) {
-            $this->error(self::INVALID_TELFR);
-            return false;
+        if (preg_match($i18n, $valueString) || preg_match($local, $valueString)) {
+            return true;
         }
-        return true;
+
+        $this->error(self::INVALID_TELFR);
+        return false;
     }
 }

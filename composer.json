@@ -10,12 +10,12 @@
   "license": "Apache 2.0",
   "require": {
     "php": ">=5.5",
-    "zendframework/zend-form": "2.*",
-    "zendframework/zend-filter": "2.*",
-    "zendframework/zend-http": "2.*",
-    "zendframework/zend-uri": "2.*",
-    "zendframework/zend-validator": "2.*",
-    "neilime/zf2-twb-bundle": "2.*@stable"
+    "zendframework/zend-form": "^2.0",
+    "zendframework/zend-filter": "^2.0",
+    "zendframework/zend-http": "^2.0",
+    "zendframework/zend-uri": "^2.0",
+    "zendframework/zend-validator": "^2.0",
+    "neilime/zf2-twb-bundle": "^2.0"
   },
   "authors": [
     {
@@ -28,7 +28,8 @@
       "General\\": "library/General/",
       "Rest\\": "library/Rest/",
       "Vendors\\": "library/Vendors/",
-      "Libs\\": "src/"
+      "Libs\\": "src/",
+      "Tests\\": "tests/"
     },
     "classmap": [
       "src/Libs/Module.php"
@@ -44,5 +45,9 @@
     "branch-alias": {
       "dev-master": "1.x-dev"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.0",
+    "zendframework/zend-test": "^2.0"
   }
 }
