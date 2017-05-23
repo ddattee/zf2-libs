@@ -7,7 +7,7 @@ set -xe
 
 # Install git (the php image doesn't have it) which is required by composer
 apt-get update -yqq
-apt-get install git zip unzip -yqq
+apt-get install git zlib1g-dev -yqq
 
 # Install composer, the tool that we will use for testing
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
