@@ -1,22 +1,27 @@
 cache:
   paths:
-  - vendor/
-  
+    - vendor/
+      
 before_script:
-- bash ci/docker_install.sh > /dev/null
-- composer install --dev
+  - bash ci/docker_install.sh > /dev/null
+  - pecl install xdebug
+  - docker-php-ext-enable xdebug
+  - composer install --dev
 
 phpunit:php5.6:
   image: php:5.6
+  coverage: '^\s*Lines:\s*\d+.\d+\%'
   script:
-    - vendor/bin/phpunit --configuration phpunit.xml
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
     
 phpunit:php7.0:
   image: php:7.0
+  coverage: '^\s*Lines:\s*\d+.\d+\%'
   script:
-    - vendor/bin/phpunit --configuration phpunit.xml
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
   image: php:7.1
+  coverage: '^\s*Lines:\s*\d+.\d+\%'
   script:
-    - vendor/bin/phpunit --configuration phpunit.xml
+    - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
