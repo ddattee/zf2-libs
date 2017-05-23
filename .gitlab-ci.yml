@@ -14,7 +14,7 @@ phpunit:php5.6:
 phpunit:php7.0:
   image: php:7.0
   script:
-  - vendor/bin/phpunit --configuration phpunit.xml --colors=neve --coverage-text
+  - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
   image: php:7.1
