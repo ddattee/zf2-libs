@@ -18,3 +18,4 @@ php -r "unlink('composer-setup.php');"
 # Here you can install any other extension that you need
 docker-php-ext-configure zip --with-libdir=lib/x86_64-linux-gnu/ && \
 docker-php-ext-install zip
+docker-php-ext-install xdebug
