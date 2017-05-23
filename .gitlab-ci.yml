@@ -4,8 +4,6 @@ cache:
       
 before_script:
   - bash ci/docker_install.sh > /dev/null
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
   - composer install --dev
 
 phpunit:php5.6:
