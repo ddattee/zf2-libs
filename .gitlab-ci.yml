@@ -10,16 +10,16 @@ phpunit:php5.6:
   image: php:5.6
   coverage: /^\s*Lines:\s*\d+\.\d+\%/
   script:
-  - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
+  - vendor/bin/phpunit --configuration phpunit.xml --colors=never
     
 phpunit:php7.0:
   image: php:7.0
   coverage: /^\s*Lines:\s*\d+\.\d+\%/
   script:
-  - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
+  - vendor/bin/phpunit --configuration phpunit.xml --colors=neve
 
 phpunit:php7.1:
   image: php:7.1
   coverage: /^\s*Lines:\s*\d+\.\d+\%/
   script:
-  - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
+  - vendor/bin/phpunit --configuration phpunit.xml --colors=never
