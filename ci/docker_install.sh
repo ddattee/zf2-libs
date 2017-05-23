@@ -7,7 +7,7 @@ set -xe
 
 # Install git (the php image doesn't have it) which is required by composer
 apt-get update -yqq
-apt-get install git -yqq
+apt-get install git zip unzip -yqq
 
 # Install composer, the tool that we will use for testing
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -15,6 +15,5 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7
 php composer-setup.php --install-dir=/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 
-# Install mysql driver
 # Here you can install any other extension that you need
-#docker-php-ext-install pdo_mysql
+docker-php-ext-install zip
