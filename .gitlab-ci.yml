@@ -1,6 +1,6 @@
 cache:
   paths:
-    - vendor/
+  - vendor/
       
 before_script:
 - bash ci/docker_install.sh > /dev/null
