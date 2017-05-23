@@ -1,3 +1,7 @@
+[![coverage report](https://git.ddattee.fr:1306/ddattee/libs/badges/master/coverage.svg)](https://git.ddattee.fr:1306/ddattee/libs/commits/master)
+[![build status](https://git.ddattee.fr:1306/ddattee/libs/badges/master/build.svg)](https://git.ddattee.fr:1306/ddattee/libs/commits/master)
+
+
 Libs
 ====
 
