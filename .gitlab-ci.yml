@@ -1,41 +1,14 @@
-phpunit:php5.6:mysql5.6:
+phpunit:php5.6:
   image: php:5.6
-  services:
-    - mysql:5.6
-  script:
-    - php vendor/bin/phpunit --colors tests
-
-phpunit:php5.6:mysql5.7:
-  image: php:5.6
-  services:
-    - mysql:5.7
-  script:
-    - php vendor/bin/phpunit --colors tests
-
-phpunit:php7.0:mysql5.6:
-  image: php:7.0
-  services:
-    - mysql:5.6
-  script:
-    - php vendor/bin/phpunit --colors tests
-
-phpunit:php7.0:mysql5.7:
-  image: php:7.0
-  services:
-    - mysql:5.7
-  script:
-    - php vendor/bin/phpunit --colors tests
-
-phpunit:php7.1:mysql5.6:
-  image: php:7.0
-  services:
-    - mysql:5.6
   script:
     - php vendor/bin/phpunit --colors tests
     
-phpunit:php7.1:mysql5.7:
+phpunit:php7.0:
+  image: php:7.0
+  script:
+    - php vendor/bin/phpunit --colors tests
+
+phpunit:php7.1:
   image: php:7.1
-  services:
-    - mysql:5.7
   script:
     - php vendor/bin/phpunit --colors tests
