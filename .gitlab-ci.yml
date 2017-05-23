@@ -3,8 +3,8 @@ cache:
     - vendor/
       
 before_script:
- - bash ci/docker_install.sh > /dev/null
- - composer install --dev
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
 
 phpunit:php5.6:
   image: php:5.6
