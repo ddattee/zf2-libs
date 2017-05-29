@@ -7,7 +7,7 @@ before_script:
 - composer install --dev
 
 after_scripts:
- - bash ci/push_github.sh
+- bash ci/push_github.sh
 
 phpunit:php5.6:
   image: php:5.6
