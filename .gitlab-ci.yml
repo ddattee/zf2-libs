@@ -6,7 +6,7 @@ before_script:
 - bash ci/docker_install.sh > /dev/null
 - composer install --dev
 
-after_scripts:
+after_script:
 - bash ci/push_github.sh
 
 phpunit:php5.6:
