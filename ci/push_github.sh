@@ -2,6 +2,6 @@
 
 cd ..
 
-if [ -f .git ]; then
+if [ -d .git ]; then
     git push https://github.com/dada87/libs master:master --tags
-endif
+fi
