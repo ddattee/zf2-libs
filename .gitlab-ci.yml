@@ -48,6 +48,7 @@ syncgithub:
   before_script:
   - apt update -yqq
   - apt install git -yqq
+  - ssh-keyscan github.com >> ~/.ssh/known_hosts
   image: debian:stable-backports
   allow_failure: true
   script:
