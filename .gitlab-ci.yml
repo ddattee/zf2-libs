@@ -52,7 +52,7 @@ phpunit:php7.1:
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
   
-syncgithub:
+sync-github:
   stage: deploy
   before_script:
   - apt update -yqq
