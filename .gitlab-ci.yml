@@ -1,28 +1,37 @@
 cache:
   paths:
   - vendor/
-  
-before_script:
-- bash ci/docker_install.sh > /dev/null
-- composer install --dev
+
 
 phpunit:php5.6:
+  before_script:
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
   image: php:5.6
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
     
 phpunit:php7.0:
+  before_script:
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
   image: php:7.0
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
+  before_script:
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
   image: php:7.1
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
   
 syncgithub:
-  image: git:latest
+  before_script:
+  - apt update -yqq
+  - apt install git -yqq
+  image: debian:stable-backports
   script:
   - git push --tags --mirror git@github.com:dada87/libs.git master:master
   when: on_success
