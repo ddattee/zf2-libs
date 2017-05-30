@@ -8,7 +8,6 @@ set -xe
 # Install git (the php image doesn't have it) which is required by composer
 apt-get update -yqq
 apt-get install apt-utils git zlib1g-dev -yqq
-pecl install xdebug
 
 # Install composer, the tool that we will use for testing
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -19,4 +18,3 @@ php -r "unlink('composer-setup.php');"
 # Here you can install any other extension that you need
 docker-php-ext-configure zip --with-libdir=lib/x86_64-linux-gnu/ && \
 docker-php-ext-install zip
-docker-php-ext-enable xdebug
