@@ -6,9 +6,6 @@ before_script:
 - bash ci/docker_install.sh > /dev/null
 - composer install --dev
 
-after_script:
-- bash ci/push_github.sh
-
 phpunit:php5.6:
   image: php:5.6
   script:
@@ -23,3 +20,10 @@ phpunit:php7.1:
   image: php:7.1
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
+  
+syncgithub:
+  image: git:latest
+  script:
+  - git push --tags --mirror git@github.com:dada87/libs.git master:master
+  when: on_success
+  
