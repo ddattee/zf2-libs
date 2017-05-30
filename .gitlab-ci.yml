@@ -3,36 +3,43 @@ cache:
   - vendor/
 
 stages:
+- build
 - test
 - deploy
 
-phpunit:php5.6:
-  stage: test
-  before_script:
+build:php5.6:
+  stage: build
+  script:
   - bash ci/docker_install.sh > /dev/null
   - composer install --dev
+
+build:php7.0:
+  stage: build
+  script:
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
+
+build:php7.1:
+  stage: build
+  script:
+  - bash ci/docker_install.sh > /dev/null
+  - composer install --dev
+  
+phpunit:php5.6:
+  stage: test
   image: php:5.6
-  allow_failure: true
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
     
 phpunit:php7.0:
   stage: test
-  before_script:
-  - bash ci/docker_install.sh > /dev/null
-  - composer install --dev
   image: php:7.0
-  allow_failure: true
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
   stage: test
-  before_script:
-  - bash ci/docker_install.sh > /dev/null
-  - composer install --dev
   image: php:7.1
-  allow_failure: true
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
   
