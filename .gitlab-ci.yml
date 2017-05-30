@@ -33,6 +33,6 @@ syncgithub:
   - apt install git -yqq
   image: debian:stable-backports
   script:
-  - git push --mirror git@github.com:dada87/libs.git master:master
+  - git push --mirror git@github.com:dada87/libs.git
   when: on_success
   
