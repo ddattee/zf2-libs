@@ -107,7 +107,7 @@ class Git
         //Set the command to call
         $cmd = "/usr/bin/git fetch";
         //Git pull params
-        $cmd .= ' ' . $remoteName . ' ' . $remoteBranch . ':' . $localBranch;
+        $cmd .= ' ' . $remoteName . ' ' . $remoteBranch;
 
         return $this->call($cmd, $cwd, $output, $errors);
     }
