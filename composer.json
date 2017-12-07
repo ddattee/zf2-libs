@@ -54,6 +54,6 @@
     "phpunit/phpunit"        : "^4.0",
     "zendframework/zend-test": "^2.0",
     "phpmd/phpmd": "^2.6",
-    "squizlabs/php_codesniffer": "3.*"
+    "squizlabs/php_codesniffer": "^3.0"
   }
 }
