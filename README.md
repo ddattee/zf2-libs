@@ -1,5 +1,6 @@
 [![coverage report](https://git.ddattee.fr/ddattee/libs/badges/master/coverage.svg)](https://git.ddattee.fr/ddattee/libs/commits/master)
 [![build status](https://git.ddattee.fr/ddattee/libs/badges/master/build.svg)](https://git.ddattee.fr/ddattee/libs/commits/master)
+[![Dependency Status](https://gemnasium.com/badges/github.com/ddattee/zf2-libs.svg)](https://gemnasium.com/github.com/ddattee/zf2-libs)
 
 
 Libs
