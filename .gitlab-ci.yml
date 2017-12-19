@@ -1,69 +1,31 @@
 cache:
   paths:
   - vendor/
+  
+before_script:
+- bash ci/docker_install.sh
+- bin/composer install --dev
 
 stages:
-- build
 - test
-- deploy
 
-build:php5.6:
-  stage: build
-  script:
-  - bash ci/docker_install.sh > /dev/null
-  - composer install --dev
-
-build:php7.0:
-  stage: build
-  script:
-  - bash ci/docker_install.sh > /dev/null
-  - composer install --dev
-
-build:php7.1:
-  stage: build
-  script:
-  - bash ci/docker_install.sh > /dev/null
-  - composer install --dev
-  
 phpunit:php5.6:
   stage: test
   image: php:5.6
-  before_script:
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
+  coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
     
 phpunit:php7.0:
   stage: test
   image: php:7.0
-  before_script:
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
+  coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
   stage: test
   image: php:7.1
-  before_script:
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
+  coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
-  
-#sync-github:
-#  stage: deploy
-#  before_script:
-#  - apt update -yqq
-#  - apt install git -yqq
-#  - mkdir ~/.ssh
-#  - ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
-#  - touch ~/.ssh/known_hosts
-#  - ssh-keyscan github.com >> ~/.ssh/known_hosts
-#  image: debian:stable-backports
-#  allow_failure: true
-#  script:
-#  - git push --mirror git@github.com:dada87/libs.git
-#  when: on_success
-  
