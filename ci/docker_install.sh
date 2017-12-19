@@ -10,6 +10,8 @@ apt-get update -yqq
 apt-get install apt-utils git zlib1g-dev -yqq
 pecl install xdebug
 
+cd $CI_PROJECT_DIR
+
 # Install composer, the tool that we will use for testing
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php --install-dir=bin --filename=composer

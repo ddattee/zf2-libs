@@ -6,19 +6,25 @@ before_script:
 - bash ci/docker_install.sh > /dev/null
 - bin/composer install --dev
 
+stages:
+- test
+
 phpunit:php5.6:
+  stage: test
   image: php:5.6
   coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
     
 phpunit:php7.0:
+  stage: test
   image: php:7.0
   coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
   - vendor/bin/phpunit --configuration phpunit.xml --colors=never --coverage-text
 
 phpunit:php7.1:
+  stage: test
   image: php:7.1
   coverage: /^\s*Lines:\s*\d+.\d+\%/
   script:
