@@ -3,7 +3,7 @@ cache:
   - vendor/
   
 before_script:
-- bash ci/docker_install.sh > /dev/null
+- bash ci/docker_install.sh
 - bin/composer install --dev
 
 stages:
