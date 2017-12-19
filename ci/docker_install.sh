@@ -6,7 +6,7 @@
 set -xe
 
 # Install git (the php image doesn't have it) which is required by composer
-apt-get update -yqq
+apt-get update && apt-get upgrade -yqq
 apt-get install apt-utils git zlib1g-dev -yqq
 
 cd $CI_PROJECT_DIR
