@@ -19,6 +19,7 @@
     "zendframework/zend-mime"           : "^2.5",
     "zendframework/zend-cache"          : "^2.5",
     "zendframework/zend-authentication" : "^2.5",
+    "zendframework/zend-mail"           : "^2.5",
     "doctrine/doctrine-orm-module"      : "0.*",
     "neilime/zf2-twb-bundle"            : "^2.5"
   },
